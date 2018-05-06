@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Mail\VerifyMail;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -72,6 +73,7 @@ class RegisterController extends Controller
         ]);
 
         Mail::to($user->email)->send(new VerifyMail($user));
+
 
         return $user;
     }
