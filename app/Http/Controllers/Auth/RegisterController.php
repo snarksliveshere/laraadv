@@ -66,7 +66,14 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'verify_token' => Str::random(),
+            'status' => User::STATUS_WAIT,
         ]);
+    }
+    protected function registered(Request $request, $user)
+    {
+        $this->guard()->logout();
+        return redirect()->route('login')->with('success', 'check your email and click on the link to verify');
     }
 
 }
