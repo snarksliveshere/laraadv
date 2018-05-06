@@ -1,0 +1,50 @@
+LARAVEL
+lesson 1
+1. installing
+composer create-project --prefer-dist laravel/laravel larashop
+2. Directories:
+app (source root:App)
+resources>assets (Resource Root)
+test (test:Test)
+vendor,bootstrap>cache, storage (Excluded)
+3. phpstorm plugin Laravel Plugin
+settings-php-laravel-enable plugin for this project
+4. laravel IDE helper
+https://github.com/barryvdh/laravel-ide-helper
+composer require --dev barryvdh/laravel-ide-helper
+php artisan ide-helper:generate
+"scripts":{
+    "post-update-cmd": [
+        "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+        "php artisan ide-helper:generate",
+        "php artisan ide-helper:meta"
+    ]
+},
+5. Debug panel
+composer require --dev barryvdh/laravel-debugbar
+6. npm install -g yarn
+yarn install
+7. соответственно, настройки в package.json для webpack npm run prod / npm run dev
+8. webpack.mix.js: меняем настройки. Ставим версионирование, т.е. style.css?sfs32df1s32f
+    меняем подключения css/js на
+        <script src="{{ mix('build/js/app.js','build') }}"></script>
+8. auth default: artisan make:auth
+9. применить миграции artisan migrate
+
+timing
+    4:09 - auth
+
+lesson 2 Docker
+Для запуска докера в винде нужен docker toolbox
+gui - dockstation
+1. docker-compose up -d
+    -d: фоновый режим
+  docker-compose down
+
+2. нюанс, чтобы работать нормально с mysql, все равно нужен работающий сервер, т.к. с ним удобнее работать и с composer и с mysql
+
+3. пересоздать машину:
+docker-compose up --build -d
+
+4.
+
