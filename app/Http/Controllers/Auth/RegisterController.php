@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\VerifyMail;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -69,7 +70,12 @@ class RegisterController extends Controller
             'verify_token' => Str::random(),
             'status' => User::STATUS_WAIT,
         ]);
+
+        Mail::to($user->email)->send(new VerifyMail($user));
+
+        return $user;
     }
+
     protected function registered(Request $request, $user)
     {
         $this->guard()->logout();
